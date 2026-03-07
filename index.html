@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="EIRI - Master your morning the night before." />
+  <title>EIRI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <img class="logo" src="images/EIRIWHITELOGOBIG.png" alt="EIRI" />
+        <div class="badge fade-in">Currently in development</div>
+        <h1 class="headline">Master your morning<br/>the night before.</h1>
+        <form class="email-form" id="emailForm" autocomplete="off">
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email" required inputmode="email" autocomplete="off" aria-label="Email address" />
+          <button type="submit">Join the early list</button>
+        </form>
+        <p class="microcopy" id="formNote">No spam. Early updates only.</p>
+      </div>
+      <a class="scroll-cue" href="#learn" aria-label="Scroll to learn more">
+        <span class="arrow">&#8595;</span>
+        <span class="scroll-text">scroll to learn more</span>
+      </a>
+    </section>
+
+    <!-- LEARN MORE -->
+    <section class="learn" id="learn">
+      <div class="learn-inner">
+
+        <!-- HOOK -->
+        <h2 class="fade-in section-heading"><strong>Struggling to put the phone down?</strong></h2>
+        <div class="section-list">
+          <p class="fade-in">Procrastinating.</p>
+          <p class="fade-in">Poor sleep.</p>
+          <p class="fade-in">No routine.</p>
+          <p class="fade-in"><strong>Me too.</strong></p>
+        </div>
+
+        <!-- MID CTA -->
+        <div class="mid-cta fade-in">
+          <form class="email-form" id="emailForm2" autocomplete="off">
+            <label class="sr-only" for="email2">Email address</label>
+            <input id="email2" name="email" type="email" placeholder="Enter your email" required inputmode="email" autocomplete="off" aria-label="Email address" />
+            <button type="submit">Join the early list</button>
+          </form>
+          <p class="microcopy" id="formNote2">No spam. Early updates only.</p>
+        </div>
+
+        <!-- THE VISION -->
+        <div class="vision">
+          <div class="vision-divider fade-in"></div>
+          <p class="vision-eyebrow fade-in">Introducing EIRI</p>
+          <h2 class="vision-title fade-in">The vision.</h2>
+          <p class="vision-sub fade-in">My art skills are dreadful.<br/>But this was my vision.</p>
+          <img class="vision-img fade-in" src="images/EIRIROUGH.png" alt="EIRI rough sketch" />
+          <div class="vision-notes fade-in">
+            <p class="vision-notes-intro">The core idea was,</p>
+            <ul class="vision-notes-list">
+              <li class="fade-in"><strong>Multiple alarms</strong> able to be set</li>
+              <li class="fade-in"><strong>Next alarm displayed</strong> for comfort knowing my alarm is set</li>
+              <li class="fade-in"><strong>Anti blue light display</strong> to stop circadian rhythm disruption</li>
+              <li class="fade-in"><strong>Blackout modes</strong> no screen display or just next alarm displayed</li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- BRINGING IT TO LIFE -->
+        <div class="vision">
+          <div class="vision-divider fade-in"></div>
+          <p class="vision-eyebrow fade-in">The prototype</p>
+          <h2 class="vision-title fade-in">Bringing it to life.</h2>
+          <p class="vision-sub fade-in">I was never going to draw the best prototype.<br/>So I used AI to generate how it'll roughly look.</p>
+          <img class="vision-img fade-in" src="images/EIRIALARM.png" alt="EIRI AI prototype" />
+        </div>
+
+        <!-- PRICE + TIMELINE -->
+        <div class="vision">
+          <div class="vision-divider fade-in"></div>
+          <p class="vision-eyebrow fade-in">Pricing and timeline</p>
+          <h2 class="vision-title fade-in">What to expect.</h2>
+          <div class="expect-grid">
+            <div class="expect-card fade-in">
+              <p class="expect-label">Target price</p>
+              <p class="expect-value" id="price-display">Under £50</p>
+              <p class="expect-note">The goal is to keep it accessible. No subscription, no app, just a one-time purchase.</p>
+            </div>
+            <div class="expect-card fade-in">
+              <p class="expect-label">Timeline</p>
+              <p class="expect-value">Late April / Early May 2026</p>
+              <p class="expect-note">First prototype is nearly there. Pre-orders will open once it is ready. Early list members hear first.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- THE FEATURES -->
+        <div class="features-header fade-in">
+          <div class="vision-divider"></div>
+          <p class="vision-eyebrow">What's included</p>
+          <h2 class="vision-title">The features.</h2>
+        </div>
+
+        <div class="features">
+          <div class="feature fade-in">
+            <i data-lucide="sun"></i>
+            <p class="feature-title">Warm Night-Friendly Display</p>
+            <p class="feature-desc">Soft amber LED display that's easy to read in the dark without harsh blue light that disrupts sleep.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="moon"></i>
+            <p class="feature-title">Blackout Mode</p>
+            <p class="feature-desc">Three display settings: display fully on, display off with next alarm visible, or completely off for total darkness.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="bell"></i>
+            <p class="feature-title">Multi-Alarm System</p>
+            <p class="feature-desc">Set up to 5 different alarms for people who prefer multiple wake-up times or reminders.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="circle"></i>
+            <p class="feature-title">Central Control Button</p>
+            <p class="feature-desc">Large recessed centre button to snooze, stop, or hold to set alarms. Designed to be easy to press when half asleep.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="chevrons-up-down"></i>
+            <p class="feature-title">Simple Adjustment Buttons</p>
+            <p class="feature-desc">Two arrow buttons for quick adjustments when setting alarms or changing the time.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="volume-2"></i>
+            <p class="feature-title">Volume Dial</p>
+            <p class="feature-desc">Side dial to quickly adjust alarm volume without navigating any menus.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="clock"></i>
+            <p class="feature-title">Next Alarm Display</p>
+            <p class="feature-desc">The screen shows your next scheduled alarm underneath the main clock for reassurance before you sleep.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="bell-ring"></i>
+            <p class="feature-title">Clear Alarm Indicator</p>
+            <p class="feature-desc">A simple bell icon shows when an alarm is active so you know your wake-up is set.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="zap"></i>
+            <p class="feature-title">USB-C Charging</p>
+            <p class="feature-desc">Modern USB-C connection for simple charging and compatibility with common cables.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="smartphone"></i>
+            <p class="feature-title">Thin Bed-Safe Design</p>
+            <p class="feature-desc">Ultra-thin circular design so it can sit comfortably on a bed like a phone, if you don't use a bedside table.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="grip"></i>
+            <p class="feature-title">Anti-Slip Base</p>
+            <p class="feature-desc">Rubber base keeps the device stable on bedside tables or beds.</p>
+          </div>
+          <div class="feature fade-in">
+            <i data-lucide="shield-off"></i>
+            <p class="feature-title">Distraction-Free Design</p>
+            <p class="feature-desc">No apps, notifications, or smart features. Just time, alarms, and sleep-friendly functionality.</p>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="vision">
+          <div class="vision-divider fade-in"></div>
+          <p class="vision-eyebrow fade-in">Quick answers</p>
+          <h2 class="vision-title fade-in">FAQ.</h2>
+          <div class="faq-list">
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">Does it need an app or Wi-Fi? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>No. EIRI works completely standalone. No app, no phone, no internet required.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">How do you set multiple alarms? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>Using 5 separate slot buttons on the side of your EIRI, you simply click the slot and set the alarm for that time.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">What does it charge with? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>USB-C. The same cable most phones already use.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">Do the alarms turn off after being active? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>Yes. Once the alarm has gone off it turns off and you have to set it again, similar to an alarm on your phone.</p></div>
+            </div>
+          </div>
+                    <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">How do you set the correct time? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>Hold the circle button and the numbers will flash. Use the arrow buttons to set the correct time, then double tap the circle button to confirm.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">Where are you selling to? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>Starting with the UK, US and Canada. If demand proves strong enough, the goal is to expand globally from there.</p></div>
+            </div>
+          </div>
+
+        <!-- CTA SECTION -->
+        <div class="cta-section">
+          <div class="vision-divider fade-in"></div>
+          <p class="signup-count fade-in">Join the people already on the list.</p>
+          <h2 class="vision-title fade-in">If this resonates.</h2>
+          <p class="cta-sub fade-in">Keep up to date or simply share your thoughts. Either means a lot.</p>
+          <p class="cta-email fade-in">I love hearing feedback. Let me know your thoughts or criticisms at<br/><span class="cta-email-addr">thoughts@eirisleep.com</span></p>
+          <form class="email-form cta-form fade-in" id="emailForm3" autocomplete="off">
+            <label class="sr-only" for="email3">Email address</label>
+            <input id="email3" name="email" type="email" placeholder="Enter your email" required inputmode="email" autocomplete="off" aria-label="Email address" />
+            <button type="submit">Join the early list</button>
+          </form>
+          <p class="microcopy fade-in" id="formNote3">No spam. Early updates only.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => lucide.createIcons());
+  </script>
+</body>
+</html>
