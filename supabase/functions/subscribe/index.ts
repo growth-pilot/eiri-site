@@ -9,7 +9,7 @@ const SITE_URL = 'https://eirisleep.com'
 serve(async (req) => {
   const corsHeaders = {
     'Access-Control-Allow-Origin': SITE_URL,
-    'Access-Control-Allow-Headers': 'content-type',
+    'Access-Control-Allow-Headers': 'authorization, content-type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
   }
 
