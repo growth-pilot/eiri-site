@@ -131,7 +131,7 @@ main{ min-height: 100vh; }
 
 .scroll-cue{
   position: absolute;
-  bottom: 22px;
+  bottom: 36px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -249,6 +249,20 @@ main{ min-height: 100vh; }
   }
   .email-form button{
     width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding-top: 32px;
+    padding-bottom: 80px;
+    transform: translateY(-40px);
+  }
+  .hero-inner {
+    gap: 14px;
+  }
+  .logo {
+    width: 130px;
   }
 }
 .section-heading {
