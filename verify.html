@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EIRI - Confirming your spot</title>
+  <link rel="icon" type="image/png" href="images/eirifavicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #0B0F1A; --panel: #121826; --text: #E8EDF5; --line: rgba(232,237,245,0.14); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Urbanist", ui-sans-serif, system-ui; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .card { width: min(480px, 92vw); padding: 48px 40px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .logo { width: 80px; opacity: 0.9; margin-bottom: 8px; }
+    h1 { margin: 0; font-size: 26px; font-weight: 600; }
+    p { margin: 0; font-size: 15px; font-weight: 300; color: rgba(232,237,245,0.6); line-height: 1.6; }
+    .icon { font-size: 40px; }
+    a { color: rgba(232,237,245,0.6); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(232,237,245,0.2); }
+    a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="images/EIRIWHITELOGOBIG.png" alt="EIRI" />
+    <div class="icon" id="icon">⏳</div>
+    <h1 id="title">Confirming your spot...</h1>
+    <p id="message">Just a second.</p>
+    <a href="/" id="homelink" style="display:none">Back to eirisleep.com</a>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://jamfflkocebwrqnsascq.supabase.co'
+
+    async function verify() {
+      const token = new URLSearchParams(window.location.search).get('token')
+      const icon = document.getElementById('icon')
+      const title = document.getElementById('title')
+      const message = document.getElementById('message')
+      const homelink = document.getElementById('homelink')
+
+      if (!token) {
+        icon.textContent = '✗'
+        title.textContent = 'Invalid link.'
+        message.textContent = 'This verification link is not valid.'
+        homelink.style.display = 'inline'
+        return
+      }
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/functions/v1/verify?token=${token}`)
+        const data = await res.json()
+
+        if (data.message === 'verified') {
+          icon.textContent = '✓'
+          title.textContent = "You're in."
+          message.textContent = "Your spot on the EIRI early list is confirmed. You'll hear from us first."
+        } else {
+          icon.textContent = '✗'
+          title.textContent = 'Something went wrong.'
+          message.textContent = 'This link may have already been used or has expired.'
+        }
+      } catch (e) {
+        icon.textContent = '✗'
+        title.textContent = 'Something went wrong.'
+        message.textContent = 'Please try again or contact thoughts@eirisleep.com'
+      }
+
+      homelink.style.display = 'inline'
+    }
+
+    verify()
+  </script>
+</body>
+</html>

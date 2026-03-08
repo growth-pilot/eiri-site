@@ -732,3 +732,12 @@ main{ min-height: 100vh; }
   color: var(--text);
   border-color: rgba(232,237,245,0.5);
 }
+
+/* Subscriber counter */
+.subscriber-count {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(232,237,245,0.35);
+  margin: 4px 0 0;
+  letter-spacing: 0.01em;
+}
