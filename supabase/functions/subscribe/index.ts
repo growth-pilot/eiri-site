@@ -23,7 +23,7 @@ serve(async (req) => {
 
     // Check if already verified
     const { data: existing } = await supabase
-      .from('subscribers')
+      .from('Subscribers')
       .select('verified')
       .eq('email', email)
       .single()
@@ -36,7 +36,7 @@ serve(async (req) => {
     const token = crypto.randomUUID()
 
     // Upsert subscriber
-    await supabase.from('subscribers').upsert({ email, token, verified: false }, { onConflict: 'email' })
+    await supabase.from('Subscribers').upsert({ email, token, verified: false }, { onConflict: 'email' })
 
     // Send verification email via Resend
     const verifyUrl = `${SITE_URL}/verify.html?token=${token}`

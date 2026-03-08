@@ -37,7 +37,7 @@ async function loadCount() {
   const countEl = document.getElementById('subscriber-count');
   if (!countEl) return;
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/subscribers?verified=eq.true&select=id`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/Subscribers?verified=eq.true&select=id`, {
       headers: {
         'apikey': SUPABASE_ANON,
         'Authorization': `Bearer ${SUPABASE_ANON}`,
