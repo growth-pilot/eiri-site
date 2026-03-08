@@ -16,7 +16,8 @@
     .logo { width: 80px; opacity: 0.9; margin-bottom: 8px; }
     h1 { margin: 0; font-size: 26px; font-weight: 600; }
     p { margin: 0; font-size: 15px; font-weight: 300; color: rgba(232,237,245,0.6); line-height: 1.6; }
-    .icon { font-size: 40px; }
+    .icon { width: 48px; height: 48px; color: rgba(232,237,245,0.7); }
+    .icon svg { width: 48px; height: 48px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
     a { color: rgba(232,237,245,0.6); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(232,237,245,0.2); }
     a:hover { color: var(--text); }
   </style>
@@ -24,7 +25,9 @@
 <body>
   <div class="card">
     <img class="logo" src="images/EIRIWHITELOGOBIG.png" alt="EIRI" />
-    <div class="icon" id="icon">⏳</div>
+    <div class="icon" id="icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    </div>
     <h1 id="title">Confirming your spot...</h1>
     <p id="message">Just a second.</p>
     <a href="/" id="homelink" style="display:none">Back to eirisleep.com</a>
@@ -40,8 +43,11 @@
       const message = document.getElementById('message')
       const homelink = document.getElementById('homelink')
 
+      const svgCheck = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>`
+      const svgX = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6M9 9l6 6"/></svg>`
+
       if (!token) {
-        icon.textContent = '✗'
+        icon.innerHTML = svgX
         title.textContent = 'Invalid link.'
         message.textContent = 'This verification link is not valid.'
         homelink.style.display = 'inline'
@@ -53,16 +59,16 @@
         const data = await res.json()
 
         if (data.message === 'verified') {
-          icon.textContent = '✓'
+          icon.innerHTML = svgCheck
           title.textContent = "You're in."
           message.textContent = "Your spot on the EIRI early list is confirmed. You'll hear from us first."
         } else {
-          icon.textContent = '✗'
+          icon.innerHTML = svgX
           title.textContent = 'Something went wrong.'
           message.textContent = 'This link may have already been used or has expired.'
         }
       } catch (e) {
-        icon.textContent = '✗'
+        icon.innerHTML = svgX
         title.textContent = 'Something went wrong.'
         message.textContent = 'Please try again or contact thoughts@eirisleep.com'
       }

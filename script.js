@@ -1,3 +1,6 @@
+// Initialise Lucide icons
+if (typeof lucide !== 'undefined') lucide.createIcons();
+
 // Fade-in on scroll
 (() => {
   const els = document.querySelectorAll(".fade-in");
