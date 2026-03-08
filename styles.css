@@ -557,6 +557,53 @@ main{ min-height: 100vh; }
   color: var(--text);
 }
 
+/* Why list */
+.why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(232,237,245,0.07);
+}
+
+.why-item:last-child {
+  border-bottom: none;
+}
+
+.why-item i, .why-item svg {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  color: rgba(232,237,245,0.45);
+  margin-top: 2px;
+  stroke-width: 1.5;
+}
+
+.why-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.why-desc {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(232,237,245,0.5);
+  line-height: 1.6;
+}
+
 /* Badge */
 .badge {
   display: inline-block;
