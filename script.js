@@ -66,7 +66,10 @@ async function handleSubmit(form, noteElId) {
     try {
       const res = await fetch(`${SUPABASE_URL}/functions/v1/subscribe`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SUPABASE_ANON}`
+        },
         body: JSON.stringify({ email })
       });
       const data = await res.json();
