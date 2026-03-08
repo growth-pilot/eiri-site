@@ -132,19 +132,19 @@ if (emailEl) {
 (async () => {
   const priceEl = document.getElementById('price-display');
   if (!priceEl) return;
-  const locale = navigator.language || 'en-GB';
-  const region = locale.split('-')[1] || 'GB';
-  const currencyMap = { 'US': 'USD', 'CA': 'CAD', 'AU': 'AUD', 'GB': 'GBP' };
-  const symbolMap = { 'USD': '$', 'CAD': 'CA$', 'AUD': 'A$', 'GBP': '£' };
-  const targetCurrency = currencyMap[region] || null;
-  if (!targetCurrency || targetCurrency === 'GBP') return;
   try {
-    const res = await fetch(`https://api.frankfurter.app/latest?from=GBP&to=${targetCurrency}`);
-    const data = await res.json();
-    const rate = data.rates[targetCurrency];
+    const geoRes = await fetch('https://ipapi.co/json/');
+    const geo = await geoRes.json();
+    const currency = geo.currency;
+    if (!currency || currency === 'GBP') return;
+    const rateRes = await fetch(`https://api.frankfurter.app/latest?from=GBP&to=${currency}`);
+    const rateData = await rateRes.json();
+    const rate = rateData.rates[currency];
     if (!rate) return;
     const converted = Math.ceil(50 * rate / 5) * 5;
-    const symbol = symbolMap[targetCurrency] || targetCurrency + ' ';
-    priceEl.textContent = `Under ${symbol}${converted}`;
+    const formatted = new Intl.NumberFormat(navigator.language || 'en', {
+      style: 'currency', currency, maximumFractionDigits: 0
+    }).format(converted);
+    priceEl.textContent = `Under ${formatted}`;
   } catch (e) {}
 })();
