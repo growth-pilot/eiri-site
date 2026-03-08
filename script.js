@@ -37,16 +37,15 @@ async function loadCount() {
   const countEl = document.getElementById('subscriber-count');
   if (!countEl) return;
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/Subscribers?verified=eq.true&select=id`, {
-      headers: {
-        'apikey': SUPABASE_ANON,
-        'Authorization': `Bearer ${SUPABASE_ANON}`,
-        'Prefer': 'count=exact',
-        'Range': '0-0'
-      }
+    const res = await fetch(`${SUPABASE_URL}/functions/v1/count`, {
+      headers: { 'Authorization': `Bearer ${SUPABASE_ANON}` }
     });
-    const count = res.headers.get('content-range')?.split('/')[1] || '0';
-    countEl.textContent = parseInt(count).toLocaleString() + ' people on the early list';
+    const { count } = await res.json();
+    if (typeof count === 'number') {
+      countEl.textContent = count.toLocaleString() + ' people on the early list';
+    } else {
+      countEl.style.display = 'none';
+    }
   } catch (e) {
     countEl.style.display = 'none';
   }
