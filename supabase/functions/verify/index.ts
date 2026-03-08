@@ -26,12 +26,11 @@ serve(async (req) => {
     .update({ verified: true })
     .eq('token', token)
     .select()
-    .single()
 
   if (error) {
     return new Response(JSON.stringify({ error: 'db_error', detail: error.message }), { status: 500, headers: corsHeaders })
   }
-  if (!data) {
+  if (!data || data.length === 0) {
     return new Response(JSON.stringify({ error: 'token_not_found' }), { status: 400, headers: corsHeaders })
   }
 
@@ -44,7 +43,7 @@ serve(async (req) => {
     },
     body: JSON.stringify({
       from: 'EIRI <jacob@eirisleep.com>',
-      to: data.email,
+      to: data[0].email,
       subject: "You're on the EIRI early list",
       html: `<!DOCTYPE html>
 <html>

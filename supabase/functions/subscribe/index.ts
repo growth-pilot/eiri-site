@@ -21,12 +21,12 @@ serve(async (req) => {
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 
-    // Check if already verified
+    // Check if subscriber already exists
     const { data: existing } = await supabase
       .from('Subscribers')
-      .select('verified')
+      .select('id, verified')
       .eq('email', email)
-      .single()
+      .maybeSingle()
 
     if (existing?.verified) {
       return new Response(JSON.stringify({ message: 'already_verified' }), { headers: corsHeaders })
@@ -35,8 +35,18 @@ serve(async (req) => {
     // Generate token
     const token = crypto.randomUUID()
 
-    // Upsert subscriber
-    await supabase.from('Subscribers').upsert({ email, token, verified: false }, { onConflict: 'email' })
+    // Insert or update subscriber
+    if (existing) {
+      const { error: updateError } = await supabase.from('Subscribers').update({ token, verified: false }).eq('email', email)
+      if (updateError) {
+        return new Response(JSON.stringify({ error: 'update_failed', detail: updateError.message }), { status: 500, headers: corsHeaders })
+      }
+    } else {
+      const { error: insertError } = await supabase.from('Subscribers').insert({ email, token, verified: false })
+      if (insertError) {
+        return new Response(JSON.stringify({ error: 'insert_failed', detail: insertError.message }), { status: 500, headers: corsHeaders })
+      }
+    }
 
     // Send verification email via Resend
     const verifyUrl = `${SITE_URL}/verify.html?token=${token}`
