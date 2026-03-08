@@ -76,6 +76,9 @@ serve(async (req) => {
             You are sign up number ${signupNumber}.<br/>We'll give you weekly updates on the progress of our first prototype and a discounted order when our first products release.
           </p>
         </td></tr>
+        <tr><td align="center" style="padding-bottom:24px;">
+          <a href="https://youtu.be/qjDRAuKlHNY" style="color:#E8EDF5;text-decoration:none;border-bottom:1px solid rgba(232,237,245,0.3);font-size:15px;font-weight:400;">Watch welcome video at this link</a>
+        </td></tr>
         <tr><td align="center" style="padding-bottom:32px;">
           <p style="margin:0;font-size:15px;font-weight:300;color:rgba(232,237,245,0.5);line-height:1.6;text-align:center;">
             In the meantime, if you have any questions,<br/>feedback, or criticisms — I'd love to hear them.<br/><br/>
