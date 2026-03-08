@@ -98,3 +98,16 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     // Silently fail, keep GBP price
   }
 })();
+
+// Render email at runtime to prevent obfuscation
+const emailEl = document.getElementById('contact-email');
+if (emailEl) {
+  const u = 'thoughts';
+  const d = 'eirisleep.com';
+  const email = u + '@' + d;
+  const link = document.createElement('a');
+  link.href = 'mailto:' + email;
+  link.textContent = email;
+  link.className = 'cta-email-link';
+  emailEl.appendChild(link);
+}

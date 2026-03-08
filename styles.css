@@ -720,3 +720,15 @@ main{ min-height: 100vh; }
   font-size: 15px !important;
   font-weight: 500 !important;
 }
+
+.cta-email-link {
+  color: rgba(232,237,245,0.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232,237,245,0.2);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+
+.cta-email-link:hover {
+  color: var(--text);
+  border-color: rgba(232,237,245,0.5);
+}
