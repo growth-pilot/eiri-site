@@ -41,7 +41,7 @@ serve(async (req) => {
     // Send verification email via Resend
     const verifyUrl = `${SITE_URL}/verify.html?token=${token}`
 
-    await fetch('https://api.resend.com/emails', {
+    const resendRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
@@ -90,6 +90,11 @@ serve(async (req) => {
 </html>`
       })
     })
+
+    if (!resendRes.ok) {
+      const resendErr = await resendRes.json()
+      return new Response(JSON.stringify({ error: 'email_failed', detail: resendErr }), { status: 500, headers: corsHeaders })
+    }
 
     return new Response(JSON.stringify({ message: 'verification_sent' }), { headers: corsHeaders })
 
