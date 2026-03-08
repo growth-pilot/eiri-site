@@ -34,6 +34,13 @@ serve(async (req) => {
     return new Response(JSON.stringify({ error: 'token_not_found' }), { status: 400, headers: corsHeaders })
   }
 
+  // Get their signup number (total verified count + 23 offset)
+  const { count } = await supabase
+    .from('Subscribers')
+    .select('id', { count: 'exact', head: true })
+    .eq('verified', true)
+  const signupNumber = (count ?? 1) + 23
+
   // Send thank-you email
   await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -58,12 +65,15 @@ serve(async (req) => {
         <tr><td align="center" style="padding-bottom:32px;">
           <img src="${SITE_URL}/images/EIRIWHITELOGOBIG.png" alt="EIRI" width="100" style="opacity:0.9;"/>
         </td></tr>
+        <tr><td align="center" style="padding-bottom:8px;">
+          <p style="margin:0;font-size:13px;font-weight:400;color:rgba(232,237,245,0.4);letter-spacing:0.5px;text-transform:uppercase;">Sign up #${signupNumber}</p>
+        </td></tr>
         <tr><td align="center" style="padding-bottom:16px;">
-          <h1 style="margin:0;font-size:28px;font-weight:600;color:#E8EDF5;letter-spacing:-0.01em;">You're in.</h1>
+          <h1 style="margin:0;font-size:28px;font-weight:600;color:#E8EDF5;letter-spacing:-0.01em;">Welcome to the early list.</h1>
         </td></tr>
         <tr><td align="center" style="padding-bottom:32px;">
           <p style="margin:0;font-size:16px;font-weight:300;color:rgba(232,237,245,0.65);line-height:1.6;text-align:center;">
-            Your spot on the EIRI early list is confirmed.<br/>You'll hear from us first when pre-orders open.
+            You are sign up number ${signupNumber}.<br/>We'll give you weekly updates on the progress of our first prototype and a discounted order when our first products release.
           </p>
         </td></tr>
         <tr><td align="center" style="padding-bottom:32px;">
