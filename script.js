@@ -42,7 +42,7 @@ async function loadCount() {
     });
     const { count } = await res.json();
     if (typeof count === 'number') {
-      countEl.textContent = count.toLocaleString() + ' people on the early list';
+      countEl.textContent = count.toLocaleString() + ' verified people on the early list';
     } else {
       countEl.style.display = 'none';
     }
