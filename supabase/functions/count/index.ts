@@ -18,7 +18,6 @@ serve(async (req) => {
   const { count, error } = await supabase
     .from('Subscribers')
     .select('id', { count: 'exact', head: true })
-    .eq('verified', true)
 
   if (error) {
     return new Response(JSON.stringify({ count: OFFSET }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
