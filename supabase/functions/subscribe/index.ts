@@ -21,36 +21,34 @@ serve(async (req) => {
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 
-    // Check if subscriber already exists
+    // Check if already subscribed
     const { data: existing } = await supabase
       .from('Subscribers')
-      .select('id, verified')
+      .select('id')
       .eq('email', email)
       .maybeSingle()
 
-    if (existing?.verified) {
-      return new Response(JSON.stringify({ message: 'already_verified' }), { headers: corsHeaders })
-    }
-
-    // Generate token
-    const token = crypto.randomUUID()
-
-    // Insert or update subscriber
     if (existing) {
-      const { error: updateError } = await supabase.from('Subscribers').update({ token, verified: false }).eq('email', email)
-      if (updateError) {
-        return new Response(JSON.stringify({ error: 'update_failed', detail: updateError.message }), { status: 500, headers: corsHeaders })
-      }
-    } else {
-      const { error: insertError } = await supabase.from('Subscribers').insert({ email, token, verified: false })
-      if (insertError) {
-        return new Response(JSON.stringify({ error: 'insert_failed', detail: insertError.message }), { status: 500, headers: corsHeaders })
-      }
+      return new Response(JSON.stringify({ message: 'already_subscribed' }), { headers: corsHeaders })
     }
 
-    // Send verification email via Resend
-    const verifyUrl = `${SITE_URL}/verify.html?token=${token}`
+    // Insert as verified immediately (no verification step)
+    const { error: insertError } = await supabase
+      .from('Subscribers')
+      .insert({ email, token: crypto.randomUUID(), verified: true })
 
+    if (insertError) {
+      return new Response(JSON.stringify({ error: 'insert_failed', detail: insertError.message }), { status: 500, headers: corsHeaders })
+    }
+
+    // Get signup number
+    const { count } = await supabase
+      .from('Subscribers')
+      .select('id', { count: 'exact', head: true })
+      .eq('verified', true)
+    const signupNumber = (count ?? 1) + 23
+
+    // Send welcome email immediately
     const resendRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -60,7 +58,7 @@ serve(async (req) => {
       body: JSON.stringify({
         from: 'EIRI <jacob@eirisleep.com>',
         to: email,
-        subject: 'Confirm your spot on the EIRI early list',
+        subject: "You're on the EIRI early list",
         html: `<!DOCTYPE html>
 <html>
 <head>
@@ -74,22 +72,28 @@ serve(async (req) => {
         <tr><td align="center" style="padding-bottom:32px;">
           <img src="${SITE_URL}/images/EIRIWHITELOGOBIG.png" alt="EIRI" width="100" style="opacity:0.9;"/>
         </td></tr>
+        <tr><td align="center" style="padding-bottom:8px;">
+          <p style="margin:0;font-size:13px;font-weight:400;color:rgba(232,237,245,0.4);letter-spacing:0.5px;text-transform:uppercase;">Sign up #${signupNumber}</p>
+        </td></tr>
         <tr><td align="center" style="padding-bottom:16px;">
-          <h1 style="margin:0;font-size:28px;font-weight:600;color:#E8EDF5;letter-spacing:-0.01em;">You're almost in.</h1>
+          <h1 style="margin:0;font-size:28px;font-weight:600;color:#E8EDF5;letter-spacing:-0.01em;">Welcome to the early list.</h1>
         </td></tr>
         <tr><td align="center" style="padding-bottom:32px;">
           <p style="margin:0;font-size:16px;font-weight:300;color:rgba(232,237,245,0.65);line-height:1.6;text-align:center;">
-            Just confirm your email to secure your spot<br/>on the EIRI early list.
+            You are sign up number ${signupNumber}.<br/>We'll give you weekly updates on the progress of our first prototype and a discounted order when our first products release.
           </p>
         </td></tr>
+        <tr><td align="center" style="padding-bottom:24px;">
+          <a href="https://youtu.be/qjDRAuKlHNY" style="color:#E8EDF5;text-decoration:none;border-bottom:1px solid rgba(232,237,245,0.3);font-size:15px;font-weight:400;">Watch welcome video at this link</a>
+        </td></tr>
         <tr><td align="center" style="padding-bottom:32px;">
-          <a href="${verifyUrl}" style="display:inline-block;background:rgba(232,237,245,0.08);color:#E8EDF5;text-decoration:none;font-size:15px;font-weight:500;padding:14px 32px;border-radius:12px;border:1px solid rgba(232,237,245,0.18);">
-            Confirm my spot
-          </a>
+          <p style="margin:0;font-size:15px;font-weight:300;color:rgba(232,237,245,0.5);line-height:1.6;text-align:center;">
+            In the meantime, if you have any questions,<br/>feedback, or criticisms — I'd love to hear them.<br/><br/>
+            <a href="mailto:thoughts@eirisleep.com" style="color:#E8EDF5;text-decoration:none;border-bottom:1px solid rgba(232,237,245,0.3);">thoughts@eirisleep.com</a>
+          </p>
         </td></tr>
         <tr><td align="center">
           <p style="margin:0;font-size:12px;color:rgba(232,237,245,0.3);line-height:1.6;text-align:center;">
-            If you didn't sign up for EIRI, you can safely ignore this email.<br/>
             Master your morning the night before.
           </p>
         </td></tr>
@@ -106,7 +110,7 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: 'email_failed', detail: resendErr }), { status: 500, headers: corsHeaders })
     }
 
-    return new Response(JSON.stringify({ message: 'verification_sent' }), { headers: corsHeaders })
+    return new Response(JSON.stringify({ message: 'subscribed' }), { headers: corsHeaders })
 
   } catch (err) {
     return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: corsHeaders })
