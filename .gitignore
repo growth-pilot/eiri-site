@@ -1,0 +1,14 @@
+# Environment variables - never commit these
+.env
+.env.local
+.env*.local
+
+# Claude worktrees
+.claude/worktrees/
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
