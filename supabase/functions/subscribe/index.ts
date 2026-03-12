@@ -17,7 +17,24 @@ serve(async (req) => {
 
   try {
     const { email } = await req.json()
-    if (!email) return new Response(JSON.stringify({ error: 'Email required' }), { status: 400, headers: corsHeaders })
+    if (!email) return new Response(JSON.stringify({ error: 'invalid_email' }), { status: 400, headers: corsHeaders })
+
+    // Basic format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: 'invalid_email' }), { status: 400, headers: corsHeaders })
+    }
+
+    // MX record check — ensures the domain can actually receive mail
+    const domain = email.split('@')[1]
+    try {
+      const mx = await Deno.resolveDns(domain, 'MX')
+      if (!mx || mx.length === 0) {
+        return new Response(JSON.stringify({ error: 'invalid_email' }), { status: 400, headers: corsHeaders })
+      }
+    } catch {
+      return new Response(JSON.stringify({ error: 'invalid_email' }), { status: 400, headers: corsHeaders })
+    }
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 

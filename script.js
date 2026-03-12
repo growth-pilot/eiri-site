@@ -77,7 +77,9 @@ async function handleSubmit(form, noteElId) {
       const data = await res.json();
 
       form.reset();
-      if (data.message === 'already_subscribed' || data.message === 'already_verified') {
+      if (data.error === 'invalid_email') {
+        if (noteEl) noteEl.textContent = "Please enter a valid email address.";
+      } else if (data.message === 'already_subscribed' || data.message === 'already_verified') {
         if (noteEl) noteEl.textContent = "You're already on the list.";
       } else if (data.message === 'subscribed') {
         if (noteEl) noteEl.textContent = "You're on the list! Check your inbox for a welcome email.";
