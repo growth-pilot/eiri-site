@@ -50,9 +50,10 @@ serve(async (req) => {
     }
 
     // Insert as verified immediately (no verification step)
+    const token = crypto.randomUUID()
     const { error: insertError } = await supabase
       .from('Subscribers')
-      .insert({ email, token: crypto.randomUUID(), verified: true })
+      .insert({ email, token, verified: true })
 
     if (insertError) {
       return new Response(JSON.stringify({ error: 'insert_failed', detail: insertError.message }), { status: 500, headers: corsHeaders })
@@ -110,9 +111,14 @@ serve(async (req) => {
             <a href="mailto:thoughts@eirisleep.com" style="color:#E8EDF5;text-decoration:none;border-bottom:1px solid rgba(232,237,245,0.3);">thoughts@eirisleep.com</a>
           </p>
         </td></tr>
-        <tr><td align="center">
+        <tr><td align="center" style="padding-bottom:16px;">
           <p style="margin:0;font-size:12px;color:rgba(232,237,245,0.3);line-height:1.6;text-align:center;">
             Master your morning the night before.
+          </p>
+        </td></tr>
+        <tr><td align="center">
+          <p style="margin:0;font-size:11px;color:rgba(232,237,245,0.2);line-height:1.6;text-align:center;">
+            <a href="${SITE_URL}/unsubscribe.html?token=${token}" style="color:rgba(232,237,245,0.2);text-decoration:none;border-bottom:1px solid rgba(232,237,245,0.15);">Unsubscribe</a>
           </p>
         </td></tr>
       </table>

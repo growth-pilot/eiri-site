@@ -14,18 +14,6 @@
   <link rel="preload" as="image" href="images/EIRIWHITELOGOBIG.png" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <script src="script.js" defer></script>
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2147066502784504');
-    fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2147066502784504&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel -->
 </head>
 <body>
   <main>
@@ -42,6 +30,7 @@
           <button type="submit">Join the early list</button>
         </form>
         <p class="microcopy" id="formNote">No spam. Early updates only.</p>
+        <p class="form-disclaimer">By joining you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
           <p id="subscriber-count" class="subscriber-count"></p></p>
       </div>
       <a class="scroll-cue" href="#learn" aria-label="Scroll to learn more">
@@ -271,8 +260,18 @@
             <button type="submit">Join the early list</button>
           </form>
           <p class="microcopy fade-in" id="formNote3">No spam. Early updates only.</p>
+          <p class="form-disclaimer fade-in">By joining you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
         </div>
 
       </div>
     </section>
   </main>
+
+  <!-- Cookie consent banner -->
+  <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+    <p>We use cookies to understand how people find EIRI and to improve our ads. <a href="/privacy.html">Learn more</a></p>
+    <div class="cookie-btns">
+      <button id="cookie-decline">Decline</button>
+      <button id="cookie-accept">Accept</button>
+    </div>
+  </div>

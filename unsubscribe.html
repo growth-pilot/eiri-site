@@ -3,36 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EIRI - Confirming your spot</title>
+  <title>EIRI - Unsubscribe</title>
   <link rel="icon" type="image/png" href="images/eirifavicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- Meta Pixel (consent-gated) -->
-  <script>
-    if (localStorage.getItem('cookie_consent') === 'accepted') {
-      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-      document,'script','https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init','2147066502784504');
-      fbq('track','PageView');
-    }
-  </script>
-  <!-- End Meta Pixel -->
   <style>
     :root { --bg: #0B0F1A; --panel: #121826; --text: #E8EDF5; --line: rgba(232,237,245,0.14); }
     * { box-sizing: border-box; }
     body { margin: 0; font-family: "Urbanist", ui-sans-serif, system-ui; background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
     .card { width: min(480px, 92vw); padding: 48px 40px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
     .logo { width: 80px; opacity: 0.9; margin-bottom: 8px; }
-    h1 { margin: 0; font-size: 26px; font-weight: 600; }
+    h1 { margin: 0; font-size: 24px; font-weight: 600; }
     p { margin: 0; font-size: 15px; font-weight: 300; color: rgba(232,237,245,0.6); line-height: 1.6; }
+    a { color: rgba(232,237,245,0.5); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(232,237,245,0.2); }
+    a:hover { color: var(--text); }
     .icon { width: 48px; height: 48px; color: rgba(232,237,245,0.7); }
     .icon svg { width: 48px; height: 48px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-    a { color: rgba(232,237,245,0.6); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(232,237,245,0.2); }
-    a:hover { color: var(--text); }
   </style>
 </head>
 <body>
@@ -41,7 +28,7 @@
     <div class="icon" id="icon">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
     </div>
-    <h1 id="title">Confirming your spot...</h1>
+    <h1 id="title">Unsubscribing...</h1>
     <p id="message">Just a second.</p>
     <a href="/" id="homelink" style="display:none">Back to eirisleep.com</a>
   </div>
@@ -49,7 +36,7 @@
   <script>
     const SUPABASE_URL = 'https://jamfflkocebwrqnsascq.supabase.co'
 
-    async function verify() {
+    async function unsubscribe() {
       const token = new URLSearchParams(window.location.search).get('token')
       const icon = document.getElementById('icon')
       const title = document.getElementById('title')
@@ -62,24 +49,23 @@
       if (!token) {
         icon.innerHTML = svgX
         title.textContent = 'Invalid link.'
-        message.textContent = 'This verification link is not valid.'
+        message.textContent = 'This unsubscribe link is not valid.'
         homelink.style.display = 'inline'
         return
       }
 
       try {
-        const res = await fetch(`${SUPABASE_URL}/functions/v1/verify?token=${token}`)
+        const res = await fetch(`${SUPABASE_URL}/functions/v1/unsubscribe?token=${token}`)
         const data = await res.json()
 
-        if (data.message === 'verified') {
+        if (data.message === 'unsubscribed') {
           icon.innerHTML = svgCheck
-          title.textContent = "You're in."
-          message.textContent = "Your spot on the EIRI early list is confirmed. You'll hear from us first."
-          if (window.fbq) fbq('track', 'CompleteRegistration')
+          title.textContent = "You're unsubscribed."
+          message.textContent = "You've been removed from the EIRI early list. Sorry to see you go."
         } else {
           icon.innerHTML = svgX
           title.textContent = 'Something went wrong.'
-          message.textContent = 'This link may have already been used or has expired.'
+          message.textContent = 'This link may have already been used. Email thoughts@eirisleep.com if you need help.'
         }
       } catch (e) {
         icon.innerHTML = svgX
@@ -90,7 +76,7 @@
       homelink.style.display = 'inline'
     }
 
-    verify()
+    unsubscribe()
   </script>
 </body>
 </html>
