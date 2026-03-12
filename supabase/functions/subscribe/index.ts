@@ -58,11 +58,10 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: 'insert_failed', detail: insertError.message }), { status: 500, headers: corsHeaders })
     }
 
-    // Get signup number
+    // Get signup number (all subscribers, matches site counter)
     const { count } = await supabase
       .from('Subscribers')
       .select('id', { count: 'exact', head: true })
-      .eq('verified', true)
     const signupNumber = (count ?? 1) + 23
 
     // Send welcome email immediately
@@ -81,11 +80,13 @@ serve(async (req) => {
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="color-scheme" content="dark"/>
+<meta name="supported-color-schemes" content="dark"/>
 </head>
-<body style="margin:0;padding:0;background:#0B0F1A;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0B0F1A;padding:48px 0;">
+<body bgcolor="#0B0F1A" style="margin:0;padding:0;background:#0B0F1A;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#0B0F1A" style="background:#0B0F1A;padding:48px 0;">
     <tr><td align="center">
-      <table width="520" cellpadding="0" cellspacing="0" style="background:#121826;border-radius:18px;border:1px solid rgba(232,237,245,0.1);padding:48px 40px;">
+      <table width="520" cellpadding="0" cellspacing="0" bgcolor="#121826" style="background:#121826;border-radius:18px;border:1px solid rgba(232,237,245,0.1);padding:48px 40px;">
         <tr><td align="center" style="padding-bottom:32px;">
           <img src="${SITE_URL}/images/EIRIWHITELOGOBIG.png" alt="EIRI" width="100" style="opacity:0.9;"/>
         </td></tr>
