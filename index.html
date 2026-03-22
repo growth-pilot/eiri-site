@@ -24,14 +24,6 @@
         <img class="logo" src="images/EIRIWHITELOGOBIG.png" alt="EIRI" />
         <div class="badge fade-in">Currently in development</div>
         <h1 class="headline">Master your morning<br/>the night before.</h1>
-        <form class="email-form" id="emailForm" autocomplete="off">
-          <label class="sr-only" for="email">Email address</label>
-          <input id="email" name="email" type="email" placeholder="Enter your email" required inputmode="email" autocomplete="off" aria-label="Email address" />
-          <button type="submit">Join the early list</button>
-        </form>
-        <p class="microcopy" id="formNote">No spam. Early updates only.</p>
-        <p class="form-disclaimer">By joining you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
-          <p id="subscriber-count" class="subscriber-count"></p></p>
       </div>
       <a class="scroll-cue" href="#learn" aria-label="Scroll to learn more">
         <span class="arrow">&#8595;</span>
@@ -247,10 +239,61 @@
             </div>
           </div>
 
+        <!-- FOUNDERS CLUB -->
+        <div class="vision founders-section" id="founders">
+          <div class="vision-divider fade-in"></div>
+          <p class="vision-eyebrow fade-in">Early access</p>
+          <h2 class="vision-title fade-in">Join the EIRI Founders Club.</h2>
+          <p class="vision-sub fade-in">Get early access, exclusive updates, and a member-only discount greater than your contribution.</p>
+          <div class="pricing-grid">
+
+            <!-- Starter -->
+            <div class="pricing-card fade-in">
+              <h3 class="tier-name">Starter</h3>
+              <p class="tier-price">£9.99</p>
+              <ul class="tier-features">
+                <li>Early access</li>
+                <li>Exclusive updates</li>
+                <li>£15 off EIRI</li>
+              </ul>
+              <button class="tier-btn" data-tier="starter">Join Starter</button>
+            </div>
+
+            <!-- Core -->
+            <div class="pricing-card pricing-card--featured fade-in">
+              <div class="tier-badge">Most Popular</div>
+              <h3 class="tier-name">Core</h3>
+              <p class="tier-price">£19.99</p>
+              <ul class="tier-features">
+                <li>Everything in Starter</li>
+                <li><strong>£30 off EIRI</strong></li>
+                <li>Priority shipping</li>
+              </ul>
+              <button class="tier-btn tier-btn--featured" data-tier="core">Join Core</button>
+            </div>
+
+            <!-- Founding Member -->
+            <div class="pricing-card pricing-card--gold fade-in">
+              <div class="tier-badge tier-badge--gold">Best Value</div>
+              <h3 class="tier-name">Founding Member</h3>
+              <p class="tier-price">£39.99</p>
+              <ul class="tier-features">
+                <li>Everything in Core</li>
+                <li><strong>Free EIRI (RRP £49.99)</strong></li>
+                <li>First-batch guarantee &amp; recognition</li>
+              </ul>
+              <button class="tier-btn tier-btn--gold" data-tier="founding">Join Founding Member</button>
+              <p class="tier-limit">Limited to first 100 members</p>
+            </div>
+
+          </div>
+          <p class="pricing-disclaimer fade-in">Limited spots available. Not an investment. Just early access &amp; discounts.</p>
+          <p class="pricing-stripe fade-in">Secure checkout powered by <strong>stripe</strong></p>
+        </div>
+
         <!-- CTA SECTION -->
         <div class="cta-section">
           <div class="vision-divider fade-in"></div>
-          <p class="signup-count fade-in">Join the people already on the list.</p>
           <h2 class="vision-title fade-in">If this resonates.</h2>
           <p class="cta-sub fade-in">Keep up to date or simply share your thoughts. Either means a lot.</p>
           <p class="cta-email fade-in">I love hearing feedback. Let me know your thoughts or criticisms at<br/><span id="contact-email"></span></p>
