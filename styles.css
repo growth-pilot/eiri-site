@@ -647,11 +647,10 @@ main{ min-height: 100vh; }
 
 /* Price + Timeline grid */
 .expect-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
   gap: 16px;
   width: 100%;
-  max-width: 560px;
   margin-top: 8px;
 }
 
