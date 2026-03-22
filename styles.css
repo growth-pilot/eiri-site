@@ -272,7 +272,7 @@ main{ min-height: 100vh; }
 @media (max-width: 520px) {
   .founders-hero {
     padding-top: 40px;
-    padding-bottom: 90px;
+    padding-bottom: 150px;
   }
   .founders-hero-inner {
     gap: 16px;
@@ -927,7 +927,7 @@ main{ min-height: 100vh; }
 }
 
 .tier-badge--gold {
-  background: rgba(200,162,80,0.1);
+  background: #100e08;
   border-color: rgba(200,162,80,0.5);
   color: rgba(200,162,80,0.9);
 }
