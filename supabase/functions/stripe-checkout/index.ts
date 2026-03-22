@@ -4,9 +4,9 @@ const STRIPE_SECRET_KEY = Deno.env.get('STRIPE_SECRET_KEY')!
 const SITE_URL = 'https://eirisleep.com'
 
 const PRICES: Record<string, { amount: number; name: string }> = {
-  starter:  { amount: 999,  name: 'EIRI Founders Club — Starter' },
-  core:     { amount: 1999, name: 'EIRI Founders Club — Core' },
-  founding: { amount: 3999, name: 'EIRI Founders Club — Founding Member' },
+  starter:  { amount: 999,  name: 'EIRI Founders Club — Starter ($9.99)' },
+  core:     { amount: 1999, name: 'EIRI Founders Club — Core ($19.99)' },
+  founding: { amount: 3999, name: 'EIRI Founders Club — Founding Member ($39.99)' },
 }
 
 const corsHeaders = {
@@ -28,7 +28,7 @@ serve(async (req) => {
     // Create Stripe checkout session via API
     const params = new URLSearchParams({
       'payment_method_types[]': 'card',
-      'line_items[0][price_data][currency]': 'gbp',
+      'line_items[0][price_data][currency]': 'usd',
       'line_items[0][price_data][product_data][name]': price.name,
       'line_items[0][price_data][unit_amount]': String(price.amount),
       'line_items[0][quantity]': '1',

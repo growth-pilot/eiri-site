@@ -19,23 +19,40 @@ body{
 
 main{ min-height: 100vh; }
 
-.hero{
+.founders-hero {
   min-height: 100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  padding: 48px 18px 90px;
-  transform: translateY(-60px);
+  padding: 64px 18px 100px;
 }
 
-.hero-inner{
-  width: min(560px, 92vw);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap: 18px;
+.founders-hero-inner {
+  width: min(960px, 94vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.founders-headline {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.founders-sub {
+  margin: 0;
+  font-size: clamp(14px, 1.8vw, 17px);
+  font-weight: 300;
+  color: rgba(232,237,245,0.5);
+  max-width: 460px;
+  line-height: 1.6;
 }
 
 .logo{
@@ -253,13 +270,12 @@ main{ min-height: 100vh; }
 }
 
 @media (max-width: 520px) {
-  .hero {
-    padding-top: 32px;
-    padding-bottom: 80px;
-    transform: translateY(-40px);
+  .founders-hero {
+    padding-top: 40px;
+    padding-bottom: 90px;
   }
-  .hero-inner {
-    gap: 14px;
+  .founders-hero-inner {
+    gap: 16px;
   }
   .logo {
     width: 130px;

@@ -52,6 +52,7 @@ fbq('track','PageView');
 // Supabase config
 const SUPABASE_URL = 'https://jamfflkocebwrqnsascq.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImphbWZmbGtvY2Vid3JxbnNhc2NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MzI0NzcsImV4cCI6MjA4ODUwODQ3N30.CbSjEb6IIAa31cGD1sRO0fSVxeBkh-4KghbH8m5mNJs';
+const STRIPE_PK = 'pk_live_51TDl07IXJGD5MAi40SVos0PCglHpWkM6qfiTsac2aDTyJbq0hR28dMFhzVG6piAmxeGdvhxDz60qAqtpQkAk5pYb00QUEXAHE5';
 
 
 // Founders Club tier buttons → Stripe checkout
