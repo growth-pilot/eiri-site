@@ -61,7 +61,7 @@ serve(async (req) => {
 
               <div style="background: rgba(255,255,255,0.05); border-radius: 8px; padding: 20px 24px; margin-bottom: 32px;">
                 <p style="margin: 0 0 8px; font-size: 13px; color: rgba(232,237,245,0.4); text-transform: uppercase; letter-spacing: 0.08em;">What's next</p>
-                <p style="margin: 0; font-size: 15px; color: rgba(232,237,245,0.7); line-height: 1.6;">We're targeting a <strong style="color: #E8EDF5;">May 2026</strong> ship date for first-batch pre-orders. As we get closer, you'll be the first to know — including tracking info once your EIRI is on its way.</p>
+                <p style="margin: 0; font-size: 15px; color: rgba(232,237,245,0.7); line-height: 1.6;">We're targeting a <strong style="color: #E8EDF5;">June 2026</strong> ship date for first-batch pre-orders. As we get closer, you'll be the first to know — including tracking info once your EIRI is on its way.</p>
               </div>
 
               <p style="font-size: 14px; color: rgba(232,237,245,0.5); line-height: 1.6; margin: 0 0 8px;">Questions? Reply to this email or reach us at <a href="mailto:thoughts@eirisleep.com" style="color: #C9A84C; text-decoration: none;">thoughts@eirisleep.com</a></p>
