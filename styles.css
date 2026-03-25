@@ -874,6 +874,101 @@ main{ min-height: 100vh; }
 }
 .cookie-btns button:hover { opacity: 0.75; }
 
+/* Product hero */
+.product-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 64px 18px 120px;
+}
+
+.product-hero-inner {
+  width: min(480px, 94vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.product-hero-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  margin: 8px 0;
+}
+
+.product-hero-name {
+  margin: 0;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.product-hero-tagline {
+  margin: 0;
+  font-size: clamp(14px, 2vw, 17px);
+  font-weight: 300;
+  color: rgba(232,237,245,0.5);
+  line-height: 1.6;
+}
+
+.product-hero-price {
+  margin: 6px 0 0;
+  font-size: clamp(44px, 8vw, 68px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.product-hero-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-hero-features li {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(232,237,245,0.55);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.product-hero-features li::before {
+  content: "✓";
+  color: rgba(200,162,80,0.75);
+  font-size: 13px;
+}
+
+.product-hero-btn {
+  width: 100%;
+  max-width: 380px;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 14px;
+  margin-top: 8px;
+}
+
+@media (max-width: 520px) {
+  .product-hero {
+    padding-top: 40px;
+    padding-bottom: 150px;
+  }
+  .product-hero-img {
+    max-width: 260px;
+  }
+}
+
 /* Founders Club / Pricing */
 .founders-section {
   margin-top: 80px;
