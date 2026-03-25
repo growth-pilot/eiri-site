@@ -951,6 +951,14 @@ main{ min-height: 100vh; }
   font-size: 13px;
 }
 
+.preorder-note {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(232,237,245,0.35);
+  letter-spacing: 0.3px;
+}
+
 .product-hero-btn {
   width: 100%;
   max-width: 380px;
