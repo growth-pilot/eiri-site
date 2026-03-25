@@ -182,3 +182,74 @@ if (emailEl) {
     priceEl.textContent = `Under ${formatted}`;
   } catch (e) {}
 })();
+// Sticky mobile CTA — show after scrolling past hero
+(() => {
+  const stickyCta = document.getElementById('stickyCta');
+  const heroBuy = document.querySelector('.product-hero-btn');
+  if (!stickyCta || !heroBuy) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      stickyCta.classList.toggle('visible', !entry.isIntersecting);
+    });
+  }, { threshold: 0 });
+  observer.observe(heroBuy);
+})();
+
+// Exit intent — desktop: mouse leaves top, mobile: scroll up after 60% page
+(() => {
+  if (localStorage.getItem('exit_shown')) return;
+  const overlay = document.getElementById('exitOverlay');
+  const closeBtn = document.getElementById('exitClose');
+  if (!overlay) return;
+
+  function showModal() {
+    if (localStorage.getItem('exit_shown')) return;
+    overlay.classList.add('visible');
+    localStorage.setItem('exit_shown', '1');
+  }
+
+  // Desktop: mouse leaves viewport at top
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY <= 0) showModal();
+  });
+
+  // Mobile: scroll back up after seeing 60% of page
+  let maxScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if (scrolled > maxScroll) maxScroll = scrolled;
+    if (maxScroll > 0.6 && scrolled < maxScroll - 0.15) showModal();
+  }, { passive: true });
+
+  closeBtn?.addEventListener('click', () => overlay.classList.remove('visible'));
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('visible');
+  });
+
+  // Wire up exit form
+  const exitForm = document.getElementById('exitForm');
+  exitForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = exitForm.querySelector('button');
+    const email = document.getElementById('exitEmail').value;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/subscribe`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON}` },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (data.status === 'verify' || data.status === 'ok') {
+        exitForm.innerHTML = '<p style="color:rgba(232,237,245,0.7);font-size:14px;margin:0;">Check your inbox to confirm ✓</p>';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  });
+})();

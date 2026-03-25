@@ -38,6 +38,10 @@
 
         <button class="tier-btn tier-btn--gold product-hero-btn fade-in" data-tier="founding">Pre Order EIRI Now $39.99 <s>$49.99</s></button>
         <p class="preorder-note fade-in">Discount for pre orders &nbsp;·&nbsp; Ships out May</p>
+        <div class="trust-badges fade-in">
+          <span><i data-lucide="shield-check"></i> 30-day money-back guarantee</span>
+          <span><i data-lucide="lock"></i> Secure checkout</span>
+        </div>
       </div>
       <a class="scroll-cue" href="#learn" aria-label="Scroll to learn more">
         <span class="arrow">&#8595;</span>
@@ -237,14 +241,21 @@
               <button class="faq-q" aria-expanded="false">Do the alarms turn off after being active? <span class="faq-icon">+</span></button>
               <div class="faq-a"><p>Yes. Once the alarm has gone off it turns off and you have to set it again, similar to an alarm on your phone.</p></div>
             </div>
-          </div>
-                    <div class="faq-item fade-in">
+            <div class="faq-item fade-in">
               <button class="faq-q" aria-expanded="false">How do you set the correct time? <span class="faq-icon">+</span></button>
               <div class="faq-a"><p>Hold the circle button and the numbers will flash. Rotate the outer ring to set the correct time, then double tap the circle button to confirm.</p></div>
             </div>
             <div class="faq-item fade-in">
               <button class="faq-q" aria-expanded="false">Where are you selling to? <span class="faq-icon">+</span></button>
-              <div class="faq-a"><p>Starting with the UK, US and Canada. If demand proves strong enough, the goal is to expand globally from there.</p></div>
+              <div class="faq-a"><p>We ship globally to over 20 countries including the US, UK, Canada, Australia, and most of Europe. Select your country at checkout.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">What if it doesn't ship in May? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>We'll keep you updated every step of the way. If there's a significant delay, you'll be the first to know and can cancel for a full refund at any time before it ships — no questions asked.</p></div>
+            </div>
+            <div class="faq-item fade-in">
+              <button class="faq-q" aria-expanded="false">Can I cancel my pre-order? <span class="faq-icon">+</span></button>
+              <div class="faq-a"><p>Yes, absolutely. You can cancel any time before your EIRI ships for a full refund. Just email us at <a href="mailto:thoughts@eirisleep.com">thoughts@eirisleep.com</a> with your order details.</p></div>
             </div>
           </div>
 
@@ -276,6 +287,27 @@
       <a href="/shipping-policy">Shipping Policy</a>
     </nav>
   </footer>
+
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <button class="tier-btn tier-btn--gold sticky-cta-btn" data-tier="founding">Pre Order $39.99 <s>$49.99</s></button>
+  </div>
+
+  <!-- Exit intent modal -->
+  <div class="exit-overlay" id="exitOverlay" role="dialog" aria-modal="true" aria-label="Stay in the loop">
+    <div class="exit-modal">
+      <button class="exit-close" id="exitClose" aria-label="Close">✕</button>
+      <img src="images/EIRIWHITELOGOBIG.png" alt="EIRI" class="exit-logo" />
+      <h2 class="exit-title">Not ready to pre-order?</h2>
+      <p class="exit-sub">Join the list and we'll let you know when EIRI ships — no spam, just updates.</p>
+      <form class="email-form exit-form" id="exitForm" autocomplete="off">
+        <label class="sr-only" for="exitEmail">Email address</label>
+        <input id="exitEmail" name="email" type="email" placeholder="Enter your email" required inputmode="email" autocomplete="off" />
+        <button type="submit">Keep me updated</button>
+      </form>
+      <p class="exit-disclaimer">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
 
   <!-- Cookie notice -->
   <div id="cookie-banner" role="dialog" aria-label="Cookie notice">
