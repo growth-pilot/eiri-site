@@ -23,6 +23,19 @@ fbq('track','PageView');
   });
 })();
 
+// Features panel toggle
+(function initFeaturesToggle() {
+  const btn = document.getElementById('featuresToggle');
+  const panel = document.getElementById('featuresPanel');
+  if (!btn || !panel) return;
+  btn.addEventListener('click', function() {
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.querySelector('.features-toggle-text').textContent = isOpen ? 'See what\'s inside' : 'Hide features';
+  });
+})();
+
 // Fade-in on scroll
 (() => {
   const els = document.querySelectorAll(".fade-in");

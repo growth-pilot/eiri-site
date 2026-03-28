@@ -3,223 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="EIRI - Master your morning the night before." />
+  <meta name="description" content="EIRI — The alarm clock that gets your phone out of the bedroom." />
   <title>EIRI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/eirifavicon.png" />
   <link rel="apple-touch-icon" href="images/eirifavicon.png" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" as="image" href="images/EIRIWHITELOGOBIG.png" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
+
+  <header class="site-header">
+    <img class="logo" src="images/EIRIWHITELOGOBIG.png" alt="EIRI" />
+  </header>
+
   <main>
 
-    <!-- HERO: PRODUCT PAGE -->
-    <section class="product-hero" id="top">
-      <div class="product-hero-inner">
-        <img class="logo" src="images/EIRIWHITELOGOBIG.png" alt="EIRI" />
-        <div class="product-layout fade-in">
-          <img class="product-hero-img" src="images/EIRIALARM.png" alt="EIRI alarm clock" />
-          <ul class="product-checklist">
-            <li>Anti-blue light amber display</li>
-            <li>Up to 5 independent alarms</li>
-            <li>Blackout &amp; dim display modes</li>
-            <li>Outer ring time adjustment</li>
-            <li>One-button snooze &amp; stop</li>
-            <li>Volume dial</li>
-            <li>USB-C charging</li>
-            <li>No app or Wi-Fi needed</li>
-          </ul>
-        </div>
+    <!-- HOOK NARRATIVE -->
+    <section class="hook" id="top">
+      <div class="hook-stmt fade-in">the screentime apps didn't work.</div>
+      <div class="hook-stmt hook-stmt--q fade-in">why?</div>
+      <div class="hook-stmt fade-in">if the phone is in your hand,</div>
+      <div class="hook-stmt hook-stmt--punch fade-in">you've lost.</div>
+      <div class="hook-stmt hook-stmt--soft fade-in">it's a battle of willpower.</div>
+      <div class="hook-stmt hook-stmt--soft fade-in">which unfortunately isn't a fair battle.</div>
+      <div class="hook-stmt hook-stmt--bold fade-in">begin at the root.</div>
+      <div class="hook-stmt hook-stmt--long fade-in">if your phone isn't near your bed when you wake up,</div>
+      <div class="hook-stmt hook-stmt--punch fade-in">you can't touch it.</div>
+      <div class="hook-stmt hook-stmt--soft fade-in">and suddenly,</div>
+      <div class="hook-stmt fade-in">you've levelled the playing field.</div>
+      <div class="hook-stmt hook-stmt--soft fade-in">but a phone alarm is super convenient.</div>
+      <div class="hook-stmt hook-stmt--soft fade-in">so we packed it all into one simple device.</div>
+      <div class="hook-stmt hook-stmt--meet fade-in">meet EIRI.</div>
+    </section>
 
-        <button class="tier-btn tier-btn--gold product-hero-btn fade-in" data-tier="founding">Pre Order EIRI Now $39.99 <s>$49.99</s></button>
-        <p class="preorder-note fade-in">Discount for pre orders &nbsp;·&nbsp; Ships out June</p>
-        <div class="trust-badges fade-in">
+    <!-- PRODUCT REVEAL -->
+    <section class="reveal" id="product">
+      <img class="reveal-img fade-in" src="images/EIRIALARM.png" alt="EIRI alarm clock" />
+
+      <div class="reveal-actions fade-in">
+        <button class="features-toggle" id="featuresToggle">
+          <span class="features-toggle-text">See what's inside</span>
+          <span class="features-toggle-icon">↓</span>
+        </button>
+
+        <div class="features-panel" id="featuresPanel">
+          <div class="features-panel-inner">
+            <ul class="feature-list">
+              <li><i data-lucide="sun"></i><span><strong>Anti-blue light amber display</strong> — warm glow that won't disrupt your sleep cycle</span></li>
+              <li><i data-lucide="bell"></i><span><strong>Up to 5 independent alarms</strong> — no phone, no menus, just set and sleep</span></li>
+              <li><i data-lucide="moon"></i><span><strong>Blackout &amp; dim display modes</strong> — full display, next alarm only, or complete darkness</span></li>
+              <li><i data-lucide="rotate-cw"></i><span><strong>Outer ring time adjustment</strong> — rotate to set alarms or change the time</span></li>
+              <li><i data-lucide="circle"></i><span><strong>One-button snooze &amp; stop</strong> — large recessed button, easy when half asleep</span></li>
+              <li><i data-lucide="volume-2"></i><span><strong>Volume dial</strong> — adjust alarm volume without any menus</span></li>
+              <li><i data-lucide="zap"></i><span><strong>USB-C charging</strong> — same cable as your phone</span></li>
+              <li><i data-lucide="shield-off"></i><span><strong>No app or Wi-Fi needed</strong> — completely standalone</span></li>
+              <li><i data-lucide="clock"></i><span><strong>Next alarm displayed</strong> — reassurance your alarm is set before you sleep</span></li>
+              <li><i data-lucide="grip"></i><span><strong>Anti-slip rubber base</strong> — stays put on bedside table or bed</span></li>
+            </ul>
+            <div class="panel-cta">
+              <button class="tier-btn tier-btn--gold" data-tier="founding">Pre Order Now $39.99 <s>$49.99</s></button>
+              <p class="preorder-note">Discount for pre orders &nbsp;·&nbsp; Ships out June</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-preorder fade-in">
+        <button class="tier-btn tier-btn--gold product-hero-btn" data-tier="founding">Pre Order EIRI Now $39.99 <s>$49.99</s></button>
+        <p class="preorder-note">Discount for pre orders &nbsp;·&nbsp; Ships out June</p>
+        <div class="trust-badges">
           <span><i data-lucide="shield-check"></i> 30-day money-back guarantee</span>
           <span><i data-lucide="lock"></i> Secure checkout</span>
         </div>
       </div>
-      <a class="scroll-cue" href="#learn" aria-label="Scroll to learn more">
-        <span class="arrow">&#8595;</span>
-        <span class="scroll-text">scroll to learn more</span>
-      </a>
     </section>
 
-    <!-- LEARN MORE -->
+    <!-- FAQ + CTA -->
     <section class="learn" id="learn">
       <div class="learn-inner">
 
-        <!-- HOOK -->
-        <h2 class="fade-in section-heading"><strong>Struggling to put the phone down?</strong></h2>
-        <div class="section-list">
-          <p class="fade-in">Procrastinating.</p>
-          <p class="fade-in">Poor sleep.</p>
-          <p class="fade-in">No routine.</p>
-          <p class="fade-in"><strong>Me too.</strong></p>
-        </div>
-
-        <!-- THE VISION -->
-        <div class="vision">
-          <div class="vision-divider fade-in"></div>
-          <p class="vision-eyebrow fade-in">Introducing EIRI</p>
-          <h2 class="vision-title fade-in">The vision.</h2>
-          <p class="vision-sub fade-in">My art skills are dreadful.<br/>But this was my vision.</p>
-          <img class="vision-img fade-in" src="images/EIRIROUGH.png" alt="EIRI rough sketch" loading="lazy" decoding="async" />
-          <div class="vision-notes fade-in">
-            <p class="vision-notes-intro">The core idea was,</p>
-            <ul class="vision-notes-list">
-              <li class="fade-in"><strong>Multiple alarms</strong> able to be set</li>
-              <li class="fade-in"><strong>Next alarm displayed</strong> for comfort knowing my alarm is set</li>
-              <li class="fade-in"><strong>Anti blue light display</strong> to stop circadian rhythm disruption</li>
-              <li class="fade-in"><strong>Blackout modes</strong> no screen display or just next alarm displayed</li>
-            </ul>
-          </div>
-        </div>
-
-
-        <!-- BRINGING IT TO LIFE -->
-        <div class="vision">
-          <div class="vision-divider fade-in"></div>
-          <p class="vision-eyebrow fade-in">The prototype</p>
-          <h2 class="vision-title fade-in">Bringing it to life.</h2>
-          <p class="vision-sub fade-in">I was never going to draw the best prototype.<br/>So I used AI to generate how it'll roughly look.</p>
-          <img class="vision-img fade-in" src="images/EIRIALARM.png" alt="EIRI AI prototype" loading="lazy" decoding="async" />
-        </div>
-
-        <!-- WHY EIRI -->
-        <div class="vision">
-          <div class="vision-divider fade-in"></div>
-          <p class="vision-eyebrow fade-in">The case for EIRI</p>
-          <h2 class="vision-title fade-in">Why EIRI over a regular<br/>alarm clock?</h2>
-          <p class="vision-sub fade-in">Regular alarm clocks are outdated. Expensive sleep trackers are overkill. EIRI is the middle ground that just works.</p>
-          <div class="why-list">
-            <div class="why-item fade-in">
-              <i data-lucide="bell"></i>
-              <div>
-                <p class="why-title">Multiple alarms</p>
-                <p class="why-desc">Set up to 5 alarms for different wake times, without navigating menus or unlocking your phone.</p>
-              </div>
-            </div>
-            <div class="why-item fade-in">
-              <i data-lucide="smartphone-nfc"></i>
-              <div>
-                <p class="why-title">No phone needed</p>
-                <p class="why-desc">Your phone stays across the room, or turned off entirely. EIRI handles your morning independently.</p>
-              </div>
-            </div>
-            <div class="why-item fade-in">
-              <i data-lucide="sun-dim"></i>
-              <div>
-                <p class="why-title">Anti-blue light display</p>
-                <p class="why-desc">A warm amber display that won't disrupt your sleep cycle when you check the time at night.</p>
-              </div>
-            </div>
-            <div class="why-item fade-in">
-              <i data-lucide="moon"></i>
-              <div>
-                <p class="why-title">Simplicity before bed</p>
-                <p class="why-desc">No apps, no notifications, no decisions to make. Less mental load before sleep means better sleep.</p>
-              </div>
-            </div>
-            <div class="why-item fade-in">
-              <i data-lucide="check-circle"></i>
-              <div>
-                <p class="why-title">Does everything a good alarm should</p>
-                <p class="why-desc">Wake you up reliably, show you the time, and get out of the way. Nothing more, nothing less.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PRICE + TIMELINE -->
-        <div class="vision">
-          <div class="vision-divider fade-in"></div>
-          <p class="vision-eyebrow fade-in">Pricing and timeline</p>
-          <h2 class="vision-title fade-in">What to expect.</h2>
-          <div class="expect-grid">
-            <div class="expect-card fade-in">
-              <p class="expect-label">Timeline</p>
-              <p class="expect-value">Late May / Early June 2026</p>
-              <p class="expect-note">First prototype is nearly there. Pre-orders will open once it is ready. Early list members hear first.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- THE FEATURES -->
-        <div class="features-header fade-in">
-          <div class="vision-divider"></div>
-          <p class="vision-eyebrow">What's included</p>
-          <h2 class="vision-title">The features.</h2>
-        </div>
-
-        <div class="features">
-          <div class="feature fade-in">
-            <i data-lucide="sun"></i>
-            <p class="feature-title">Warm Night-Friendly Display</p>
-            <p class="feature-desc">Soft amber LED display that's easy to read in the dark without harsh blue light that disrupts sleep.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="moon"></i>
-            <p class="feature-title">Blackout Mode</p>
-            <p class="feature-desc">Three display settings: display fully on, display off with next alarm visible, or completely off for total darkness.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="bell"></i>
-            <p class="feature-title">Multi-Alarm System</p>
-            <p class="feature-desc">Set up to 5 different alarms for people who prefer multiple wake-up times or reminders.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="circle"></i>
-            <p class="feature-title">Central Control Button</p>
-            <p class="feature-desc">Large recessed centre button to snooze, stop, or hold to set alarms. Designed to be easy to press when half asleep.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="chevrons-up-down"></i>
-            <p class="feature-title">Outer Ring Adjustment</p>
-            <p class="feature-desc">Rotate the outer ring for quick adjustments when setting alarms or changing the time.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="volume-2"></i>
-            <p class="feature-title">Volume Dial</p>
-            <p class="feature-desc">Side dial to quickly adjust alarm volume without navigating any menus.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="clock"></i>
-            <p class="feature-title">Next Alarm Display</p>
-            <p class="feature-desc">The screen shows your next scheduled alarm underneath the main clock for reassurance before you sleep.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="bell-ring"></i>
-            <p class="feature-title">Clear Alarm Indicator</p>
-            <p class="feature-desc">A simple bell icon shows when an alarm is active so you know your wake-up is set.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="zap"></i>
-            <p class="feature-title">USB-C Charging</p>
-            <p class="feature-desc">Modern USB-C connection for simple charging and compatibility with common cables.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="smartphone"></i>
-            <p class="feature-title">Thin Bed-Safe Design</p>
-            <p class="feature-desc">Ultra-thin circular design so it can sit comfortably on a bed like a phone, if you don't use a bedside table.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="grip"></i>
-            <p class="feature-title">Anti-Slip Base</p>
-            <p class="feature-desc">Rubber base keeps the device stable on bedside tables or beds.</p>
-          </div>
-          <div class="feature fade-in">
-            <i data-lucide="shield-off"></i>
-            <p class="feature-title">Distraction-Free Design</p>
-            <p class="feature-desc">No apps, notifications, or smart features. Just time, alarms, and sleep-friendly functionality.</p>
-          </div>
-        </div>
-
-        <!-- FAQ -->
         <div class="vision">
           <div class="vision-divider fade-in"></div>
           <p class="vision-eyebrow fade-in">Quick answers</p>
@@ -258,27 +124,26 @@
               <div class="faq-a"><p>Yes, absolutely. You can cancel any time before your EIRI ships for a full refund. Just email us at <a href="mailto:thoughts@eirisleep.com">thoughts@eirisleep.com</a> with your order details.</p></div>
             </div>
           </div>
+        </div>
 
-        <!-- CTA SECTION -->
         <div class="cta-section">
           <div class="vision-divider fade-in"></div>
-          <h2 class="vision-title fade-in">If this resonates.</h2>
-          <p class="cta-sub fade-in">Keep up to date or simply share your thoughts. Either means a lot.</p>
-          <p class="cta-email fade-in">I love hearing feedback. Let me know your thoughts or criticisms at<br/><span id="contact-email"></span></p>
+          <h2 class="vision-title fade-in">Stay in the loop.</h2>
+          <p class="cta-sub fade-in">Not ready to pre-order yet? Join the list for updates.</p>
+          <p class="cta-email fade-in">Questions or feedback? Reach us at <span id="contact-email"></span></p>
           <form class="email-form cta-form fade-in" id="emailForm3" autocomplete="off">
             <label class="sr-only" for="email3">Email address</label>
             <input id="email3" name="email" type="email" placeholder="Enter your email" required inputmode="email" autocomplete="off" aria-label="Email address" />
             <button type="submit">Join the early list</button>
           </form>
           <p class="microcopy fade-in" id="formNote3">No spam. Early updates only.</p>
-          <p class="form-disclaimer fade-in">By joining you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
+          <p class="form-disclaimer fade-in">By joining you agree to our <a href="/privacy">Privacy Policy</a>.</p>
         </div>
 
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <p class="footer-copy">&copy; 2026 EIRI. All rights reserved.</p>
     <nav class="footer-links">
@@ -288,12 +153,10 @@
     </nav>
   </footer>
 
-  <!-- Sticky mobile CTA -->
   <div class="sticky-cta" id="stickyCta">
     <button class="tier-btn tier-btn--gold sticky-cta-btn" data-tier="founding">Pre Order $39.99 <s>$49.99</s></button>
   </div>
 
-  <!-- Exit intent modal -->
   <div class="exit-overlay" id="exitOverlay" role="dialog" aria-modal="true" aria-label="Stay in the loop">
     <div class="exit-modal">
       <button class="exit-close" id="exitClose" aria-label="Close">✕</button>
@@ -309,10 +172,12 @@
     </div>
   </div>
 
-  <!-- Cookie notice -->
   <div id="cookie-banner" role="dialog" aria-label="Cookie notice">
-    <p>We use cookies to understand how people find EIRI. <a href="/privacy.html">Learn more</a></p>
+    <p>We use cookies to understand how people find EIRI. <a href="/privacy">Learn more</a></p>
     <div class="cookie-btns">
       <button id="cookie-accept">Got it</button>
     </div>
   </div>
+
+</body>
+</html>
