@@ -102,6 +102,7 @@ serve(async (req) => {
       'shipping_address_collection[allowed_countries][19]': 'SG',
       'shipping_address_collection[allowed_countries][20]': 'JP',
       'shipping_address_collection[allowed_countries][21]': 'AE',
+      'metadata[tier]': tier,
       success_url: `${SITE_URL}/verify?checkout=success`,
       cancel_url: `${SITE_URL}/#founders`,
     })
