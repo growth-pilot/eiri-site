@@ -68,10 +68,26 @@ const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 const STRIPE_PK = 'pk_live_51TDl07IXJGD5MAi40SVos0PCglHpWkM6qfiTsac2aDTyJbq0hR28dMFhzVG6piAmxeGdvhxDz60qAqtpQkAk5pYb00QUEXAHE5';
 
 
-// Founders Club tier buttons → Stripe checkout
+// Tier button destination pages
+const TIER_PAGES = {
+  founding: '/preorder',
+  reserve15: '/reserve-15',
+  reserve20: '/reserve-20',
+};
+
+// Founders Club tier buttons → navigate to product page, or Stripe checkout if already on product page
 document.querySelectorAll('.tier-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
     const tier = btn.dataset.tier;
+    const onProductPage = /\/(preorder|reserve)/.test(window.location.pathname);
+
+    // If not on a product page and a destination exists, navigate there first
+    if (!onProductPage && TIER_PAGES[tier]) {
+      window.location.href = TIER_PAGES[tier];
+      return;
+    }
+
+    // Already on the product page — proceed with Stripe checkout
     const original = btn.textContent;
     btn.disabled = true;
     btn.textContent = 'Loading...';
