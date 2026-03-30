@@ -627,6 +627,16 @@ main { min-height: 100vh; }
   font-size: 15px;
 }
 
+.sticky-reserve-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.sticky-reserve-btns .tier-btn--reserve {
+  font-size: 14px;
+  padding: 14px;
+}
+
 @media (max-width: 760px) {
   .sticky-cta.visible {
     display: block;
