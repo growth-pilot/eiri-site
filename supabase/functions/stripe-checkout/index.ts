@@ -3,10 +3,55 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 const STRIPE_SECRET_KEY = Deno.env.get('STRIPE_SECRET_KEY')!
 const SITE_URL = 'https://eirisleep.com'
 
-const PRICES: Record<string, { amount: number; name: string }> = {
-  founding: { amount: 4299, name: 'EIRI Alarm Pre-order ($42.99)' },
-  reserve15: { amount: 499, name: 'EIRI Reserves 15% Off ($4.99)' },
-  reserve20: { amount: 1299, name: 'EIRI Reserves 20% Off ($12.99)' },
+type TierCurrency = { amount: number; name: string }
+type PriceTable = Record<string, Record<string, TierCurrency>>
+
+const PRICES: PriceTable = {
+  founding: {
+    usd: { amount: 4299, name: 'EIRI Pre-order' },
+    gbp: { amount: 3399, name: 'EIRI Pre-order' },
+    eur: { amount: 3999, name: 'EIRI Pre-order' },
+    aud: { amount: 6599, name: 'EIRI Pre-order' },
+    cad: { amount: 5899, name: 'EIRI Pre-order' },
+    nzd: { amount: 7299, name: 'EIRI Pre-order' },
+    sgd: { amount: 5799, name: 'EIRI Pre-order' },
+    aed: { amount: 15799, name: 'EIRI Pre-order' },
+    chf: { amount: 3899, name: 'EIRI Pre-order' },
+    nok: { amount: 45900, name: 'EIRI Pre-order' },
+    sek: { amount: 45900, name: 'EIRI Pre-order' },
+    dkk: { amount: 29900, name: 'EIRI Pre-order' },
+    pln: { amount: 17999, name: 'EIRI Pre-order' },
+  },
+  reserve15: {
+    usd: { amount: 499, name: 'EIRI Reserve — 15% Off' },
+    gbp: { amount: 399, name: 'EIRI Reserve — 15% Off' },
+    eur: { amount: 449, name: 'EIRI Reserve — 15% Off' },
+    aud: { amount: 799, name: 'EIRI Reserve — 15% Off' },
+    cad: { amount: 699, name: 'EIRI Reserve — 15% Off' },
+    nzd: { amount: 899, name: 'EIRI Reserve — 15% Off' },
+    sgd: { amount: 699, name: 'EIRI Reserve — 15% Off' },
+    aed: { amount: 1899, name: 'EIRI Reserve — 15% Off' },
+    chf: { amount: 449, name: 'EIRI Reserve — 15% Off' },
+    nok: { amount: 5500, name: 'EIRI Reserve — 15% Off' },
+    sek: { amount: 5500, name: 'EIRI Reserve — 15% Off' },
+    dkk: { amount: 3500, name: 'EIRI Reserve — 15% Off' },
+    pln: { amount: 2199, name: 'EIRI Reserve — 15% Off' },
+  },
+  reserve20: {
+    usd: { amount: 1299, name: 'EIRI Reserve — 20% Off' },
+    gbp: { amount: 999, name: 'EIRI Reserve — 20% Off' },
+    eur: { amount: 1199, name: 'EIRI Reserve — 20% Off' },
+    aud: { amount: 1999, name: 'EIRI Reserve — 20% Off' },
+    cad: { amount: 1799, name: 'EIRI Reserve — 20% Off' },
+    nzd: { amount: 2199, name: 'EIRI Reserve — 20% Off' },
+    sgd: { amount: 1799, name: 'EIRI Reserve — 20% Off' },
+    aed: { amount: 4799, name: 'EIRI Reserve — 20% Off' },
+    chf: { amount: 1199, name: 'EIRI Reserve — 20% Off' },
+    nok: { amount: 13900, name: 'EIRI Reserve — 20% Off' },
+    sek: { amount: 13900, name: 'EIRI Reserve — 20% Off' },
+    dkk: { amount: 8900, name: 'EIRI Reserve — 20% Off' },
+    pln: { amount: 5499, name: 'EIRI Reserve — 20% Off' },
+  },
 }
 
 const corsHeaders = {
@@ -19,16 +64,18 @@ serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
 
   try {
-    const { tier } = await req.json()
-    const price = PRICES[tier]
-    if (!price) {
+    const { tier, currency: rawCurrency } = await req.json()
+    const currency = (rawCurrency || 'usd').toLowerCase()
+    const tierPrices = PRICES[tier]
+    if (!tierPrices) {
       return new Response(JSON.stringify({ error: 'invalid_tier' }), { status: 400, headers: corsHeaders })
     }
+    const price = tierPrices[currency] ?? tierPrices['usd']
 
     // Create Stripe checkout session via API
     const params = new URLSearchParams({
       'payment_method_types[]': 'card',
-      'line_items[0][price_data][currency]': 'usd',
+      'line_items[0][price_data][currency]': currency,
       'line_items[0][price_data][product_data][name]': price.name,
       'line_items[0][price_data][unit_amount]': String(price.amount),
       'line_items[0][quantity]': '1',

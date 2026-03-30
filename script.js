@@ -75,6 +75,22 @@ const TIER_PAGES = {
   reserve20: '/reserve-20',
 };
 
+// Detect user currency from IP (cached in sessionStorage)
+async function getUserCurrency() {
+  const cached = sessionStorage.getItem('eiri_currency');
+  if (cached) return cached;
+  try {
+    const res = await fetch('https://ipapi.co/currency/', { signal: AbortSignal.timeout(3000) });
+    const raw = (await res.text()).trim().toLowerCase();
+    const supported = ['usd', 'gbp', 'eur', 'aud', 'cad', 'nzd', 'sgd', 'aed', 'pln', 'chf', 'nok', 'sek', 'dkk'];
+    const currency = supported.includes(raw) ? raw : 'usd';
+    sessionStorage.setItem('eiri_currency', currency);
+    return currency;
+  } catch {
+    return 'usd';
+  }
+}
+
 // Founders Club tier buttons → navigate to product page, or Stripe checkout if already on product page
 document.querySelectorAll('.tier-btn').forEach(btn => {
   btn.addEventListener('click', async () => {
@@ -88,28 +104,29 @@ document.querySelectorAll('.tier-btn').forEach(btn => {
     }
 
     // Already on the product page — proceed with Stripe checkout
-    const original = btn.textContent;
+    const original = btn.innerHTML;
     btn.disabled = true;
     btn.textContent = 'Loading...';
     try {
+      const currency = await getUserCurrency();
       const res = await fetch(`${SUPABASE_URL}/functions/v1/stripe-checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${SUPABASE_ANON}`
         },
-        body: JSON.stringify({ tier })
+        body: JSON.stringify({ tier, currency })
       });
       const { url, error } = await res.json();
       if (url) {
         window.location.href = url;
       } else {
         btn.textContent = error || 'Something went wrong';
-        setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 3000);
+        setTimeout(() => { btn.innerHTML = original; btn.disabled = false; }, 3000);
       }
     } catch {
       btn.textContent = 'Something went wrong';
-      setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 3000);
+      setTimeout(() => { btn.innerHTML = original; btn.disabled = false; }, 3000);
     }
   });
 });
