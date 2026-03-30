@@ -4,7 +4,9 @@ const STRIPE_SECRET_KEY = Deno.env.get('STRIPE_SECRET_KEY')!
 const SITE_URL = 'https://eirisleep.com'
 
 const PRICES: Record<string, { amount: number; name: string }> = {
-  founding: { amount: 3999, name: 'EIRI Pre Order ($39.99)' },
+  founding: { amount: 4299, name: 'EIRI Alarm Pre-order ($42.99)' },
+  reserve15: { amount: 499, name: 'EIRI Reserves 15% Off ($4.99)' },
+  reserve20: { amount: 1299, name: 'EIRI Reserves 20% Off ($12.99)' },
 }
 
 const corsHeaders = {

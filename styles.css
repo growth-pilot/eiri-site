@@ -270,6 +270,27 @@ main { min-height: 100vh; }
   color: rgba(220,185,100,1);
 }
 
+.reserve-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tier-btn--reserve {
+  font-size: 13px;
+  padding: 11px 14px;
+  color: rgba(232,237,245,0.5);
+  border-color: rgba(232,237,245,0.1);
+}
+
+.tier-btn--reserve:hover {
+  color: rgba(232,237,245,0.75);
+}
+
+@media (max-width: 500px) {
+  .reserve-btns { flex-direction: column; }
+}
+
 .product-hero-btn {
   padding: 16px;
   font-size: 16px;
